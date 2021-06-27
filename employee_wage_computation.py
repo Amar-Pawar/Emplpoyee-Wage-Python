@@ -37,7 +37,8 @@ class Employee:
 
         if wage_type.lower() == "monthly":
             # calling function to calculaye monthly wage.
-            monthly_wages = self.calculate_monthly_wage()
+            wage_data = self.calculate_monthly_wage()
+            print(wage_data)
 
     def employee_attendance(self):
         """
@@ -95,8 +96,9 @@ class Employee:
             This function will calculate monthly wages for employee till condition of max working days
             or max working hours is reached.
         Return:
-            This function will return monthly wages or wages till day.
+            This function will return wage data dictionary with day, daily wage, total wage.
         """
+        wages_data_dict = {}
         total_wages = 0
         total_working_hrs = 0
         for days in range(0, MONTHLY_DAYS):
@@ -108,12 +110,16 @@ class Employee:
 
             total_wages += daily_wages
             print("Total wages till day - ", total_wages)
+            wages_data_dict["Day "+str(days+1)] = {
+                "daily_wage": daily_wages,
+                "total_wage": total_wages
+            }
             if total_working_hrs == MAX_WORKING_HRS:
                 print(f"Max working hours reached {total_working_hrs}")
                 break
         print("Total Working Hours: ", total_working_hrs)
         print("Monthly wages ", total_wages)
-        return total_wages
+        return wages_data_dict
     
     def get_working_hrs(self, present_status):
         """
