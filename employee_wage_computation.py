@@ -103,19 +103,33 @@ class Employee:
             print("Day- "+ str(days+1))
             present_status = self.employee_attendance()
             daily_wages = self.calculate_daily_wage(present_status)
-            if present_status == FULL_TIME_PRESENT:
-                total_working_hrs = total_working_hrs + 8
-            if present_status == PART_TIME_PRESENT:
-                total_working_hrs = total_working_hrs + 4
+            working_hrs = self.get_working_hrs(present_status)
+            total_working_hrs = total_working_hrs + working_hrs
 
             monthly_wages += daily_wages
             if total_working_hrs == MAX_WORKING_HRS:
-                print(f"max working hours reached {total_working_hrs}")
-                print("Monthly wages ", monthly_wages)
-                return monthly_wages
-
+                print(f"Max working hours reached {total_working_hrs}")
+                break
+        print("Total Working Hours: ", total_working_hrs)
         print("Monthly wages ", monthly_wages)
         return monthly_wages
+    
+    def get_working_hrs(self, present_status):
+        """
+        Description:
+            This function will return working hrs based on present status
+        Parameters:
+            It takes present_status of employee
+        Return:
+            This function will return working hrs.
+        """
+        working_hrs = 0
+        if present_status == FULL_TIME_PRESENT:
+            working_hrs = 8
+        if present_status == PART_TIME_PRESENT:
+            working_hrs = 4
+        return working_hrs
+
 
 # creating object of a class
 employee_object = Employee()
