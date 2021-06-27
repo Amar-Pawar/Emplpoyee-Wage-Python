@@ -9,7 +9,8 @@
 '''
 import random
 from constants import (
-    FULL_TIME_PRESENT, PART_TIME_PRESENT, ABSENT, MONTHLY_DAYS
+    FULL_TIME_PRESENT, PART_TIME_PRESENT, ABSENT, MONTHLY_DAYS,
+    MAX_WORKING_HRS
 )
 
 class Employee:
@@ -91,16 +92,28 @@ class Employee:
     def calculate_monthly_wage(self):
         """
         Description:
-            This function will calculate monthly wages for employee.
+            This function will calculate monthly wages for employee till condition of max working days
+            or max working hours is reached.
         Return:
             This function will return monthly wages.
         """
         monthly_wages = 0
+        total_working_hrs = 0
         for days in range(0, MONTHLY_DAYS):
             print("Day- "+ str(days+1))
             present_status = self.employee_attendance()
             daily_wages = self.calculate_daily_wage(present_status)
+            if present_status == FULL_TIME_PRESENT:
+                total_working_hrs = total_working_hrs + 8
+            if present_status == PART_TIME_PRESENT:
+                total_working_hrs = total_working_hrs + 4
+
             monthly_wages += daily_wages
+            if total_working_hrs == MAX_WORKING_HRS:
+                print(f"max working hours reached {total_working_hrs}")
+                print("Monthly wages ", monthly_wages)
+                return monthly_wages
+
         print("Monthly wages ", monthly_wages)
         return monthly_wages
 
