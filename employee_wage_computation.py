@@ -95,9 +95,9 @@ class Employee:
             This function will calculate monthly wages for employee till condition of max working days
             or max working hours is reached.
         Return:
-            This function will return monthly wages.
+            This function will return monthly wages or wages till day.
         """
-        monthly_wages = 0
+        total_wages = 0
         total_working_hrs = 0
         for days in range(0, MONTHLY_DAYS):
             print("Day- "+ str(days+1))
@@ -106,13 +106,14 @@ class Employee:
             working_hrs = self.get_working_hrs(present_status)
             total_working_hrs = total_working_hrs + working_hrs
 
-            monthly_wages += daily_wages
+            total_wages += daily_wages
+            print("Total wages till day - ", total_wages)
             if total_working_hrs == MAX_WORKING_HRS:
                 print(f"Max working hours reached {total_working_hrs}")
                 break
         print("Total Working Hours: ", total_working_hrs)
-        print("Monthly wages ", monthly_wages)
-        return monthly_wages
+        print("Monthly wages ", total_wages)
+        return total_wages
     
     def get_working_hrs(self, present_status):
         """
