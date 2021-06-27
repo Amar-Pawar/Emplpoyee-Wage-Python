@@ -45,16 +45,23 @@ class Employee:
         is_present = False
         present_status = ABSENT
         emp_check = random.randint(0,2)
-        if emp_check == 0:
+        employee_attendance_check_dict = {
+            0: FULL_TIME_PRESENT,
+            1: PART_TIME_PRESENT,
+            2: ABSENT
+        }
+        present_status = employee_attendance_check_dict[emp_check]
+        if present_status == FULL_TIME_PRESENT:
             is_present = True
-            present_status = FULL_TIME_PRESENT
             print("Employee is full time present")
-        elif emp_check == 1:
+
+        if present_status == PART_TIME_PRESENT:
             is_present = True
-            present_status = PART_TIME_PRESENT
             print("Employee is part time present")
-        else:
+
+        if present_status == ABSENT:
             print("Employee is absent")
+
         return is_present, present_status
     
     def calculate_daily_wage(self, present_status):
