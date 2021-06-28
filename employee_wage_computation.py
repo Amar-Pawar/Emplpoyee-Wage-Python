@@ -16,7 +16,8 @@ from constants import (
 class Employee:
     # creating a contsructor
     def __init__(self):
-        pass
+        print("Welcome To Employee Wage Computation Program")
+
 
     def employee_wage_computation(self, wage_type):
         """
@@ -25,8 +26,6 @@ class Employee:
         Parameter:
             Takes input wage type - monthly / daily
         """
-
-        print("Welcome To Employee Wage Computation Program")
 
         if wage_type.lower() == "daily":
             # calling function to check employee attendance
